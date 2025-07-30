@@ -14,6 +14,10 @@ def print_hex_with_lines(binary_data, start_line=None, end_line=None, bytes_per_
     start = start_line * bytes_per_line
     end = (end_line + 1) * bytes_per_line
 
+    # 상단 헤더 출력 (Offset + 각 바이트 위치 + Decoded text)
+    byte_headers = '  '.join(f'{i:02X}' for i in range(bytes_per_line))
+    print(f'{"Offset(h)":<10}{byte_headers:<{bytes_per_line * 3}}  Decoded text')
+
     # 지정된 줄 범위만큼 출력
     for i in range(start, min(end, len(binary_data)), bytes_per_line):
         line_data = binary_data[i:i+bytes_per_line]
